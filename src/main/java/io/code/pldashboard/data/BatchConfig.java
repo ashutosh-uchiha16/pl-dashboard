@@ -25,7 +25,7 @@ import io.code.pldashboard.model.Match;
 @EnableBatchProcessing
 public class BatchConfig {
 
-    private final String[] FIELD_NAMES = new String[] {"id", "season", "date", "home_team", "away_team", "full_time_home_goals","full_time_away_goals", "result","referee"};
+    private final String[] FIELD_NAMES = new String[] {"id", "season", "date", "home_team", "away_team", "full_time_home_goals","full_time_away_goals", "result","referee", "stadium"};
     
 
     @Autowired
@@ -55,8 +55,8 @@ public class BatchConfig {
     public JdbcBatchItemWriter<Match> writer(DataSource dataSource) {
         return new JdbcBatchItemWriterBuilder<Match>()
                 .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-                .sql("INSERT INTO match (id, season, date, home_team, away_team, full_time_home_goals,full_time_away_goals, result,referee)" + 
-                " VALUES (:id, :season, :date, :homeTeam, :awayTeam, :fullTimeHomeGoals, :fullTimeAwayGoals, :result, :referee)").dataSource(dataSource)
+                .sql("INSERT INTO match (id, season, date, home_team, away_team, full_time_home_goals,full_time_away_goals, result,referee,stadium)" + 
+                " VALUES (:id, :season, :date, :homeTeam, :awayTeam, :fullTimeHomeGoals, :fullTimeAwayGoals, :result, :referee, :stadium)").dataSource(dataSource)
                 .build();
     }
 

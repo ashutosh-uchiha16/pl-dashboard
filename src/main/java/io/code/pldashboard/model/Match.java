@@ -20,6 +20,7 @@ public class Match {
     private int fullTimeAwayGoals;
     private String result;
     private String referee;
+    private String stadium;
 
     
     public Match() {
@@ -78,7 +79,20 @@ public class Match {
     public void setReferee(String referee) {
         this.referee = referee;
     }
+    public String getStadium() {
+        return stadium;
+    }
+    public void setStadium(String stadium) {
+        this.stadium = stadium;
+    }
+    
+    @Override
+    public String toString() {
+        return "Match [awayTeam=" + awayTeam + ", date=" + date + ", fullTimeAwayGoals=" + fullTimeAwayGoals
+                + ", fullTimeHomeGoals=" + fullTimeHomeGoals + ", homeTeam=" + homeTeam + ", id=" + id + ", referee="
+                + referee + ", result=" + result + ", season=" + season + ", stadium=" + stadium + "]";
+    }
 
-
+    
     
 }

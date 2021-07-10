@@ -1,11 +1,15 @@
 package io.code.pldashboard.controller;
 
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.code.pldashboard.model.Match;
 import io.code.pldashboard.model.Team;
 import io.code.pldashboard.repository.MatchRepository;
 import io.code.pldashboard.repository.TeamRepository;
@@ -32,6 +36,15 @@ public class TeamController {
         return team;
     }
 
-    
+    @GetMapping("/team/{teamName}/matches")
+    public List<Match> getMatchesForTeam(@PathVariable String teamName, @RequestParam int year){
+       
+       
+        String season = String.valueOf(year) + "-" + String.valueOf((year + 1) % 100);
+
+        return this.matchRepository.getMatchesByTeamForSeason(
+            teamName, season);
+
+    }
     
 }

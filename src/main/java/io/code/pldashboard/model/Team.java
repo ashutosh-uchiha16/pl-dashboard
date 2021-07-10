@@ -18,7 +18,8 @@ public class Team {
     private String teamName;
     private long totalMatches;
     private long totalWins;
-   private long totalDraws;
+    private long totalDraws;
+    private String stadium;
 
     @Transient
     private List<Match> matches;
@@ -60,12 +61,7 @@ public class Team {
     public void setTotalDraws(long totalDraws) {
         this.totalDraws = totalDraws;
     }
-    @Override
-    public String toString() {
-        return "Team [matches=" + matches + ", teamName=" + teamName + ", totalDraws=" + 
-        totalDraws + ", totalMatches="
-                + totalMatches + ", totalWins=" + totalWins + "]";
-    }
+    
     public Team() {
     }
     public List<Match> getMatches() {
@@ -74,7 +70,19 @@ public class Team {
     public void setMatches(List<Match> matches) {
         this.matches = matches;
     }
+    public String getStadium() {
+        return stadium;
+    }
+    public void setStadium(String stadium) {
+        this.stadium = stadium;
+    }
 
+    @Override
+    public String toString() {
+        return "Team [matches=" + matches + ", teamName=" + teamName + ", totalDraws=" + 
+        totalDraws + ", totalMatches="
+                + totalMatches + ", totalWins=" + totalWins + ", stadium=" + stadium + "]";
+    }
     
     
 }

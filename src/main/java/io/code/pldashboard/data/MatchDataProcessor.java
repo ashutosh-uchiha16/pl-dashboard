@@ -53,7 +53,11 @@ public class MatchDataProcessor implements ItemProcessor<MatchInput, Match> {
         }
 
         match.setResult(winner);
+        
+     //match.setStadium("AWS");
+     match.setStadium(matchInput.getStadium());
 
+    //  System.out.println(match.getStadium());
         return match;
 
     }

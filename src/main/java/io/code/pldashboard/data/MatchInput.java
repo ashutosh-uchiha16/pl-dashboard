@@ -11,6 +11,7 @@ public class MatchInput {
     private String fullTimeAwayGoals;
     private String result;
     private String referee;
+    private String stadium;
 
 
     
@@ -69,6 +70,12 @@ public class MatchInput {
     }
     public void setReferee(String referee) {
         this.referee = referee;
+    }
+    public String getStadium() {
+        return stadium;
+    }
+    public void setStadium(String stadium) {
+        this.stadium = stadium;
     }
 
    

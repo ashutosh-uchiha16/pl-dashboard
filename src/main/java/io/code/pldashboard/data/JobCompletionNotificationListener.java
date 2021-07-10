@@ -44,17 +44,18 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
     if(jobExecution.getStatus() == BatchStatus.COMPLETED) {
       log.info("!!! JOB FINISHED! Time to verify the results");
 
-      // jdbcTemplate.query("SELECT season, date, home_team, away_team, full_time_home_goals,full_time_away_goals, result,referee FROM match",
+      // jdbcTemplate.query("SELECT id, date, home_team, away_team, full_time_home_goals,full_time_away_goals, result,referee, stadium FROM match",
       //   (rs, row) -> 
       //               // " Id: " + rs.getString(1) + 
-      //               " season: " + rs.getString(1) + 
+      //               " id: " + rs.getString(1) + 
       //               " date: " + rs.getString(2) + 
       //               " homeTeam: " + rs.getString(3) + 
       //               " awayTeam: " + rs.getString(4) + 
       //               " HomeGoals: " + rs.getString(5) + 
       //               " AwayGoals: " + rs.getString(6) + 
       //               " Winner: " + rs.getString(7) + 
-      //               " Referee: " + rs.getString(8)
+      //               " Referee: " + rs.getString(8) + 
+      //               " Stadium: " + rs.getString(9)
       // ).forEach(str -> System.out.println(str));
 
       Map<String, Team> teamData = new HashMap<>();
@@ -98,8 +99,15 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
             team.setTotalDraws(team.getTotalDraws() + (long) e[1]);
         });
 
+      em.createQuery("select m.homeTeam, m.stadium from Match m", Object[].class)
+      .getResultList()
+      .stream()
+      .forEach(e -> {
+          Team team = teamData.get((String) e[0]);
+          team.setStadium((String) e[1]);
+      });
       teamData.values().forEach(team -> em.persist(team));
-      //teamData.values().forEach(team -> System.out.println(team));
+      // teamData.values().forEach(team -> System.out.println(team));
 
 
     }
