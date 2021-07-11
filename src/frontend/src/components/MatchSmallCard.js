@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./MatchSmallCard.scss";
 
 export const MatchSmallCard = ({ teamName, match }) => {
   const otherTeam =
@@ -7,20 +8,27 @@ export const MatchSmallCard = ({ teamName, match }) => {
   const otherTeamRoute = `/teams/${otherTeam}`;
   const winningLocation = match.result === match.homeTeam ? "home" : "away";
 
+  const result =
+    match.result === teamName
+      ? "MatchSmallCard won-card"
+      : match.result === "DRAW"
+      ? "MatchSmallCard draw-card"
+      : "MatchSmallCard loss-card";
   return (
-    <div className="MatchSmallCard">
-      <h3>
-        vs
+    <div className={result}>
+      <span>vs</span>
+
+      <h1>
         <Link to={otherTeamRoute}> {otherTeam} </Link>
-      </h3>
+      </h1>
 
       {match.result === "DRAW" ? (
-        <p>
+        <p className="match-result">
           DRAW with {otherTeam} by {match.fullTimeHomeGoals} -{" "}
           {match.fullTimeAwayGoals}
         </p>
       ) : (
-        <p>
+        <p className="match-result">
           {match.result} won by{" "}
           {winningLocation === "home"
             ? match.fullTimeHomeGoals
