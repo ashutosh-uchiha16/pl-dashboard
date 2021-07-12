@@ -27,6 +27,11 @@ public class TeamController {
         this.matchRepository = matchRepository;
     }
 
+    @GetMapping("/team")
+    public Iterable<Team> getAllTeam(){
+       return this.teamRepository.findAll();
+    }
+
     @GetMapping("/team/{teamName}")
     public Team getTeam(@PathVariable String teamName){
        
@@ -39,9 +44,19 @@ public class TeamController {
     @GetMapping("/team/{teamName}/matches")
     public List<Match> getMatchesForTeam(@PathVariable String teamName, @RequestParam int year){
        
-       
-        String season = String.valueOf(year) + "-" + String.valueOf((year + 1) % 100);
-
+        String yearOne = "";
+       int temp = (year + 1) % 100;
+       if(temp >= 0 && temp <= 9){
+            // yearOne += String.format("%03d", temp);
+            yearOne += "0" + String.valueOf(temp);
+       } else {
+        yearOne = String.valueOf(temp);
+       }
+      
+    //    System.out.println(temp);
+    //    System.out.println(yearOne);
+        String season = String.valueOf(year) + "-" + yearOne;
+        // System.out.println(season);
         return this.matchRepository.getMatchesByTeamForSeason(
             teamName, season);
 
