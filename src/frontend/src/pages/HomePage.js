@@ -7,7 +7,9 @@ export const HomePage = () => {
 
   useEffect(() => {
     const fetchAllTeams = async () => {
-      const response = await fetch(`http://localhost:8080/team`);
+      const response = await fetch(
+        `${process.env.REACT_APP_API_ROOT_URL}/team`
+      );
       const data = await response.json();
 
       setTeams(data);
@@ -17,9 +19,6 @@ export const HomePage = () => {
 
   return (
     <div className="HomePage">
-      <div className="header-section">
-        <h1 className="app-name">Premier League Dashboard</h1>
-      </div>
       <div className="team-grid">
         {teams.map((team) => (
           <TeamTile key={team.id} teamName={team.teamName} />
