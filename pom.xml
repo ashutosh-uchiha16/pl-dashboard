@@ -67,7 +67,7 @@
 				<artifactId>heroku-maven-plugin</artifactId>
 				<version>3.0.3</version>
 				<configuration>
-				<!-- <appName></appName> -->
+				<appName>pl-dashboard</appName>
 				<processTypes>
 					<web>java $JAVA_OPTS target/pl-dashboard-0.0.1-SNAPSHOT.jar</web>
 				</processTypes>
