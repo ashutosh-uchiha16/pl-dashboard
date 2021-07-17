@@ -15,9 +15,10 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>16</java.version>
-		<!-- <maven.compiler.source>1.8</maven.compiler.source> 
-		<maven.compiler.target>1.8</maven.compiler.target> -->
+		<maven.compiler.source>1.8</maven.compiler.source> 
+		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -65,8 +66,17 @@
 				<groupId>com.heroku.sdk</groupId>
 				<artifactId>heroku-maven-plugin</artifactId>
 				<version>3.0.3</version>
+				<configuration>
+				<!-- <appName></appName> -->
+				<processTypes>
+					<web>java $JAVA_OPTS target/pl-dashboard-0.0.1-SNAPSHOT.jar</web>
+				</processTypes>
+				  </configuration>
 			  </plugin>
 		</plugins>
+		
 	</build>
+
+	
 
 </project>
