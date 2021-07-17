@@ -10,7 +10,7 @@ function App() {
       <Router>
         <div className="header-section">
           <h1 className="app-name">
-            <Link to="/">Premier League Dashboard</Link>
+            <Link to="/">Premier League </Link>
           </h1>
         </div>
         <Switch>
